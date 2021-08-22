@@ -1,8 +1,8 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const routes = require("./routes/api");
-const api = require("./routes/api");
+const routes = require("./routes/");
+
 const app = express();
 require("dotenv").config();
 
@@ -15,14 +15,19 @@ app.use(express.json());
 app.use(express.static("public"));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-});
-
-app.use(routes);
-
-app.listen(PORT, function () {
-  console.log(`App listening on Port ${PORT}`);
-});
+console.log(MONGODB_URI);
+mongoose
+  .connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    app.use(routes);
+    app.listen(PORT, function () {
+      console.log(`App listening on Port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });

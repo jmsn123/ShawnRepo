@@ -16,11 +16,14 @@
     "express": "^4.17.1",
     "mongodb": "^3.6.11",
     "mongoose": "^5.13.7",
+    "mongoose-seed": "^0.6.0",
     "morgan": "^1.10.0"
-  },"jest": {
+  },
+  "jest": {
     "testEnvironment": "node"
-},
+  },
   "devDependencies": {
+    "faker": "^5.5.3",
     "jest": "^27.0.6",
     "mongodb-memory-server": "^7.3.6",
     "nodemon": "^2.0.12"

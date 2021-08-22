@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const issueSchema = new Schema({
-  assignto: {
+  assignTo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
     required: true,
@@ -21,6 +21,7 @@ const issueSchema = new Schema({
   issue_created_on: {
     type: Date,
     required: true,
+    default: Date.now(),
   },
   priority: {
     type: Number,
