@@ -14,8 +14,10 @@ router.get("/", async (req, res) => {
     });
 });
 router.get("/:id", async (req, res) => {
-  console.log("GET /api/project-tracker/:id");
-  model.Project.findById()
+  const { id } = req.params;
+
+  console.log("GET /api/project-tracker/" + id);
+  model.Project.findById(id)
     .then((data) => {
       res.status(201).json(data);
     })
@@ -47,13 +49,12 @@ router.patch("/update/:id", async (req, res) => {
   }
 });
 router.delete("/delete/:id", async (req, res) => {
-    try {
-      const project = await model.Project.findByIdAndDelete(
-        req.params.id,);
-    if(!project) response.status(404).json({message:"no item found"})
-      res.status(200).json({message:"deleted"});
-    } catch (err) {
-      res.status(500).json({ message: err.messages });
-    }
-  });
+  try {
+    const project = await model.Project.findByIdAndDelete(req.params.id);
+    if (!project) response.status(404).json({ message: "no item found" });
+    res.status(200).json({ message: "deleted" });
+  } catch (err) {
+    res.status(500).json({ message: err.messages });
+  }
+});
 module.exports = router;

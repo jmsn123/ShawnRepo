@@ -17,6 +17,10 @@ const userSchema = new Schema({
     type: String,
     required: "Enter a email.",
   },
+  password:{
+    type:String,
+    required:true,
+  },
   role: {
     type: String,
     required: true,
@@ -27,10 +31,11 @@ const userSchema = new Schema({
   created_on: {
     type: Date,
     required: true,
+    default:Date.now(),
   },
   created_by: {
     type: String,
-    required: true,
+    
   },
   modified_on: {
     type: Date,
