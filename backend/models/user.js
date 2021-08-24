@@ -35,6 +35,7 @@ const userSchema = new Schema({
   },
   created_by: {
     type: String,
+  
     
   },
   modified_on: {
@@ -43,6 +44,10 @@ const userSchema = new Schema({
   modified_by: {
     type: String,
   },
+  token:{
+    type:String,
+    required:true,
+  }
 });
 
 const User = mongoose.model("user", userSchema);

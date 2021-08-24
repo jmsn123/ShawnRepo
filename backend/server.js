@@ -2,11 +2,12 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const routes = require("./routes/");
-
+const cors = require("cors");
 const app = express();
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
+app.use(cors())
 
 app.use(morgan("dev"));
 

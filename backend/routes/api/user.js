@@ -10,13 +10,13 @@ const model = require("../../models");
 router.get("/me", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
-    const user = await User.findById(req.user.id);
+    const user = await model.User.findById(req.user.id);
     res.json(user);
   } catch (e) {
     res.send({ message: "Error in Fetching user" });
   }
 });
-router.get("/signup",
+router.post("/signup",
 [check("username","Please enter a Valid Username")
     .not()
     .isEmpty(),
@@ -31,7 +31,7 @@ router.get("/signup",
   if(!errors.isEmpty()){
       return res.status(400).json({
           errors:errors.array,
-          msg:"new"
+          msg:errors
       });
   }
   const {username,email,password} = req.body;
@@ -39,7 +39,7 @@ router.get("/signup",
   let user = await model.User.findOne({
       email
   })
-  if(!user){
+  if(user){
       return res.status(401).json({
           message:"user exists!"
       })
@@ -61,8 +61,10 @@ router.get("/signup",
                 "randomString", {
                     expiresIn: 10000
                 },
-                (err, token) => {
+                async (err, token) => {
                     if (err) throw err;
+                    user.token  = token
+                    await user.save()
                     res.status(200).json({
                         token
                     });
@@ -70,15 +72,9 @@ router.get("/signup",
             );
   }catch(err){
         console.log(err.message);
-        res.status(500).send("Error in Saving");
+        res.status(500).send("Error in Savjjjjing");
   }
-  model.Issue.find()
-    .then((data) => {
-      res.status(201).json(data);
-    })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
+
 });
 router.post("/login",[
     check("email","please enter a valid email").isEmail(),
@@ -90,12 +86,13 @@ router.post("/login",[
             errors:errors.array()
         })
     }     
+    console.log(req.header("token"))
     const {email,password} = req.body;
     try {
         let user = await model.User.findOne({
             email
         })
-        if(!user)Pleaseres.status(400).json({
+        if(!user)res.status(400).json({
             message:"user does not exist"
         })
         const isMatch = await bcrypt.compare(password,user.password);
@@ -114,7 +111,9 @@ router.post("/login",[
             "randomString",
             {
                 expiresIn:3600
-            },(err,token)=>{
+            }, async (err,token)=>{
+                    user.token  = token
+                    await user.save()
                 res.status(200).json({
                     token
                 })
