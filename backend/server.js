@@ -7,7 +7,7 @@ const app = express();
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
-app.use(cors())
+app.use(cors());
 
 app.use(morgan("dev"));
 
@@ -18,17 +18,17 @@ app.use(express.static("public"));
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
 console.log(MONGODB_URI);
 mongoose
-  .connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    app.use(routes);
-    app.listen(PORT, function () {
-      console.log(`App listening on Port ${PORT}`);
+    .connect(MONGODB_URI, {
+        useNewUrlParser: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        app.use(routes);
+        app.listen(PORT, function() {
+            console.log(`App listening on Porhellot ${PORT}`);
+        });
+    })
+    .catch((err) => {
+        console.log(err);
     });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
