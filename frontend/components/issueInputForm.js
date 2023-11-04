@@ -12,28 +12,20 @@ function IssueInputForm() {
     <form onSubmit={submitHandler}>
       <div className="row justify-content-center align-items-center g-3 mt-3">
         <div className="col-auto d-flex align-items-center justify-content-center">
-          <label className="m-2" htmlFor="inputPassword">
-            Issue
-          </label>
-          <InputCheckbox name="Issue" options={["hello"]} />
+          <InputBox name="Issue" label={"Issue"} options={["hello"]} />
         </div>
         <div className="col-auto d-flex align-items-baseline">
-          <label className="m-2" htmlFor="inputPassword">
-            Status
-          </label>
-          <InputBox name="status" />
+          <InputBox name="status" label={"status"} />
         </div>
         <div className="col-auto d-flex align-items-center">
-          <label className="m-2" htmlFor="inputPassword">
-            Priority
-          </label>
-          <InputCheckbox name="priority" options={["hello"]} />
+          <InputBox name="priority" label={"priority"} options={["hello"]} />
         </div>
         <div className="col-auto d-flex align-items-center">
-          <label className=" w-50" htmlFor="inputPassword">
-            Assign to
-          </label>
-          <InputCheckbox name="assignedTo" options={[1, 2, 3, 4]} />
+          <InputCheckbox
+            name="assignedTo"
+            label="assined to "
+            options={[1, 2, 3, 4]}
+          />
         </div>
         <div className="input-group w-50">
           <span className="input-group-text">description</span>
