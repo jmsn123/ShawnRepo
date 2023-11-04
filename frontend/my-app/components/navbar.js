@@ -3,13 +3,13 @@ import React from "react";
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
+      <div className="container-fluid">
         <a href="#" className="navbar-brand">
           Brand
         </a>
         <button
           type="button"
-          class="navbar-toggler"
+          className="navbar-toggler"
           data-bs-toggle="collapse"
           data-bs-target="#navbarCollapse"
         >
@@ -26,7 +26,7 @@ function Navbar() {
             <a href="#" className="nav-item nav-link">
               Issues
             </a>
-            <a href="#" className="nav-item nav-link disabled" tabindex="-1">
+            <a href="#" className="nav-item nav-link disabled" tabIndex="-1">
               New Issue
             </a>
           </div>

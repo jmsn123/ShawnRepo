@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
-function InputCheckbox() {
+function InputCheckbox({ name, options }) {
+  const [selected, setSelected] = useState("");
+
   return (
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Open this select menu</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+    <select
+      className="form-select"
+      defaultValue={selected}
+      aria-label="Default select example"
+    >
+      <option defaultValue>Open this select menu</option>
+      {options.map((option) => (
+        <option value={option}>{option}</option>
+      ))}
     </select>
   );
 }
