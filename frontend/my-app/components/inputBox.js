@@ -1,17 +1,22 @@
 import React from "react";
 
-function InputBox({ name }) {
+function InputBox({ name, placeholder, label, className = "form-control" }) {
   return (
-    <div className="input-group mb-3">
-      <input
-        type="text"
-        className="form-control"
-        placeholder="Username"
-        aria-label="Username"
-        name={name}
-        aria-describedby="basic-addon1"
-      />
-    </div>
+    <>
+      <label className="m-2" htmlFor="inputPassword">
+        {label}
+      </label>
+      <div className="input-group ">
+        <input
+          type="text"
+          className={className}
+          placeholder={placeholder}
+          aria-label="Username"
+          name={name}
+          aria-describedby="basic-addon1"
+        />
+      </div>
+    </>
   );
 }
 

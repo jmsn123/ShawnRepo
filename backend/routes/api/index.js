@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const issueroutes = require("./issueTracker");
+const issueroutes = require("./issueTracker.js");
 const projectroutes = require("./project");
 const userroutes = require("./user");
 

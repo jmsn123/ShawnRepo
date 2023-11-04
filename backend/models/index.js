@@ -1,6 +1,6 @@
 const schemas = {
-  Issue: require("./issueTracker"),
-  User: require("./user"),
-  Project: require("./project"),
+    Issue: require("./issue.js"),
+    User: require("./user.js"),
+    Project: require("./project.js"),
 };
 module.exports = schemas;
